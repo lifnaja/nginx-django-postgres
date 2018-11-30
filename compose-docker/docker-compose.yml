@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx:
+    build: nginxserver/ 
+    ports:
+      - 8080:80
+    depends_on:
+      - djangoweb
+
+  djangoweb:
+    build: projectx/
+    ports:
+      - 5000:5000
+    depends_on:
+      - dbpostgres
+
+  dbpostgres:
+    build: postgres/
+    ports:
+      - 5432:5432
+
